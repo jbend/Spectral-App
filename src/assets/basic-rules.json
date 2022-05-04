@@ -1,4 +1,4 @@
-{
+rules: {
   "extends": [
     "spectral:oas",
     "spectral:asyncapi"
