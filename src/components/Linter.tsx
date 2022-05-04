@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Spectral, Document } from '@stoplight/spectral-core';
+import { Spectral, Document, Ruleset } from '@stoplight/spectral-core';
 //import Parsers, Yaml from '@stoplight/spectral-parsers';
 import { Json, Yaml } from '@stoplight/spectral-parsers';
 import { truthy } from '@stoplight/spectral-functions';
@@ -51,15 +51,17 @@ export default function Linter() {
       console.log("Parse Start");
 
       const vpSpec = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/viewpoint.json';
-      const ruleSet = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/basic-rules.json';
+      const ruleSetLocation = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/basic-rules.yaml';
 
       const spectral = new Spectral();
 
-      const ruleSetResponse = await fetch(ruleSet);
-      const ruleSetDoc = await ruleSetResponse.json();
+      const ruleSetResponse = await fetch(ruleruleSetLocationSet);
+      const ruleSetDoc = await ruleSetResponse.text();
       console.log(ruleSetDoc);
 
-      spectral.setRuleset(ruleSetDoc);
+      const ruleSet = new Ruleset()
+
+      spectral.setRuleset(ruleSet);
 
       const response = await fetch(vpSpec);
       const specDoc = await response.json();
