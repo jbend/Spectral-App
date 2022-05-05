@@ -51,15 +51,17 @@ export default function Linter() {
       console.log("Parse Start");
 
       const vpSpec = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/viewpoint.json';
-      const ruleSetLocation = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/basic-rules.yaml';
+      const ruleSetYaml = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/basic-rules.yaml';
+      const ruleSetJson = 'https://raw.githubusercontent.com/jbend/Spectral-App/main/src/assets/basic-rules.json';
 
       const spectral = new Spectral();
 
-      const ruleSetResponse = await fetch(ruleruleSetLocationSet);
-      const ruleSetDoc = await ruleSetResponse.text();
+      // const ruleSetResponse = await fetch(ruleSetJson);
+      const ruleSetResponse = await fetch(ruleSetJson);
+      const ruleSetDoc = await ruleSetResponse.json();
       console.log(ruleSetDoc);
 
-      const ruleSet = new Ruleset()
+      const ruleSet = new Ruleset(ruleSetDoc);
 
       spectral.setRuleset(ruleSet);
 
